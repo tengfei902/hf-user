@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>威付宝支付系统  - 注册</title>
+    <title>慧富宝支付系统  - 注册</title>
     <link href="#springUrl('/Public/Front/css/bootstrap.min.css?v=3.3.6')" rel="stylesheet">
     <link href="#springUrl('/Public/Front/css/font-awesome.css?v=4.4.0')" rel="stylesheet">
     <link rel="stylesheet" src="#springUrl('/Public/Front/bootstrapvalidator/css/bootstrapValidator.min.css')">
@@ -59,7 +59,7 @@
         </div>
     </div>
     <div class="row" style="padding-top: 60px; clear: both;">
-        <div class="col-md-12 text-center"><p><small>&copy; 威付宝支付系统 All Rights Reserved.  </small></p></div>
+        <div class="col-md-12 text-center"><p><small>&copy; 慧富宝支付系统 All Rights Reserved.  </small></p></div>
     </div>
 </div>
 

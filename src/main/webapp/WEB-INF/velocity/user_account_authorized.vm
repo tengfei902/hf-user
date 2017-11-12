@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <title>威付宝支付系统---用户管理中心</title>
+    <title>慧富宝支付系统---用户管理中心</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="#springUrl('/Public/Front/css/bootstrap.min.css')" rel="stylesheet">
     <link href="#springUrl('/Public/Front/css/font-awesome.min.css')" rel="stylesheet">
@@ -29,7 +29,7 @@
                     <h5>申请认证</h5>
                 </div>
                 <div class="ibox-content">
-                    <p class="bg-success" style="padding:10px 0px 10px 30px">${desc}</p>
+                    <p class="bg-success" style="padding:10px 0px 10px 30px">#if(${desc}) ${desc} #else "审核中" #end</p>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <title>威付宝支付系统---用户管理中心</title>
+    <title>慧富宝支付系统---用户管理中心</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="#springUrl('/Public/Front/css/bootstrap.min.css')" rel="stylesheet">
     <link href="#springUrl('/Public/Front/css/font-awesome.min.css')" rel="stylesheet">
@@ -37,13 +37,13 @@
                             <label class="layui-form-label">姓名：</label>
                             <div class="layui-input-block">
                                 <input type="text" id="name" name="name" lay-verify="title" autocomplete="off"
-                                       placeholder="姓名" class="layui-input" value=${userInfo.name}>
+                                       placeholder="姓名" class="layui-input" value=#if(${userInfo.name}) ${userInfo.name} #else "" #end />
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">身份证号码：</label>
                             <div class="layui-input-block">
-                                <input type="text" id="idCard" name="idCard" lay-verify="identity" placeholder="身份证号码" autocomplete="off" class="layui-input" value=${userInfo.idCard}>
+                                <input type="text" id="idCard" name="idCard" lay-verify="identity" placeholder="身份证号码" autocomplete="off" class="layui-input" value= #if(${userInfo.idCard}) ${userInfo.idCard} #else "" #end >
                             </div>
                         </div>
 
@@ -52,14 +52,14 @@
                                 <label class="layui-form-label">手机：</label>
                                 <div class="layui-input-inline">
                                     <input type="text" id="tel" name="tel" lay-verify="phone" autocomplete="off"
-                                           class="layui-input" value=${userInfo.tel}>
+                                           class="layui-input" value= #if(${userInfo.tel}) ${userInfo.tel} #else "" #end>
                                 </div>
                             </div>
                             <div class="layui-inline">
                                 <label class="layui-form-label">QQ：</label>
                                 <div class="layui-input-inline">
                                     <input type="text" id="qq" name="qq" lay-verify="" autocomplete="off"
-                                           class="layui-input" value=${userInfo.qq}>
+                                           class="layui-input" value= #if(${userInfo.qq}) ${userInfo.qq} #else "" #end>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">生日：</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="birthdate" id="birthdate" lay-verify="date" placeholder="YYYY-MM-dd" autocomplete="off" class="layui-input" value="$!date.format('yyyy-MM-dd',${userInfo.birthdate})">
+                                    <input type="text" name="birthdate" id="birthdate" lay-verify="date" placeholder="YYYY-MM-dd" autocomplete="off" class="layui-input" value=#if(${userInfo.birthdate}) $!date.format('yyyy-MM-dd',${userInfo.birthdate}) #else "" #end>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             <label class="layui-form-label">联系地址：</label>
                             <div class="layui-input-block">
                                 <input type="text" id="address" name="address" lay-verify="title" autocomplete="off"
-                                       placeholder="联系地址" class="layui-input" value=${userInfo.address}>
+                                       placeholder="联系地址" class="layui-input" value= #if(${userInfo.address}) ${userInfo.address} #else "" #end>
                             </div>
                         </div>
                         <div class="layui-form-item">

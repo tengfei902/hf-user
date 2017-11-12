@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <title>威付宝支付系统</title>
+    <title>慧富宝支付系统</title>
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
     <![endif]-->
@@ -32,7 +32,7 @@
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 	    		<span class="clear">
 			        <span class="block m-t-xs">
-			            demouu<br>(ID：10013)
+			            ${name}<br>
 			        </span>
 			        <span class="text-muted text-xs block">
 			            			                <span>认证用户</span>			            <b class="caret"></b>
@@ -42,7 +42,7 @@
                 <ul class="dropdown-menu animated fadeInRight m-t-xs">
                     <li><a class="J_menuItem" href="/User_Account_editPassword.html">修改密码</a> </li>
                     <li class="divider"></li>
-                    <li><a href="/User_Login_loginout.html">安全退出</a> </li>
+                    <li><a href="#springUrl('/user/logout')">安全退出</a> </li>
                 </ul>
             </div>
             <div class="userimg hidden">
