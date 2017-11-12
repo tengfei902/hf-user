@@ -21,30 +21,30 @@ public class UserInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         String loginId = request.getParameter("loginId");
         if(StringUtils.isEmpty(loginId) && request.getRequestURI().contains("login")) {
-            response.sendRedirect("/customer/login.jsp");
+            response.sendRedirect("/user/login.jsp");
             return false;
         }
 
         String sessionId = request.getSession().getId();
         if(Objects.isNull(request.getSession().getAttribute(Constants.USER_LOGIN_INFO))) {
-            response.sendRedirect("/customer/login.jsp");
+            response.sendRedirect("/user/login.jsp");
             return false;
         }
         Map<String,Object> map = (Map<String,Object>)request.getSession().getAttribute(Constants.USER_LOGIN_INFO);
 
         if(MapUtils.isEmpty(map)) {
-            response.sendRedirect("/customer/login.jsp");
+            response.sendRedirect("/user/login.jsp");
             return false;
         }
 
         if(request.getRequestURI().contains("login") && !StringUtils.equals(loginId,String.valueOf(map.get("loginId")))) {
-            response.sendRedirect("/customer/login.jsp");
+            response.sendRedirect("/user/login.jsp");
             return false;
         }
 
         String userId = ((Map<String,Object>)request.getSession().getAttribute(Constants.USER_LOGIN_INFO)).get("id").toString();
         if(!cacheService.checkLogin(userId,sessionId)) {
-            response.sendRedirect("/customer/login.jsp");
+            response.sendRedirect("/user/login.jsp");
             return false;
         }
 

@@ -256,7 +256,7 @@
 <!-- 登陆框 -->
 <section id="login">
     <div class="login-zz"></div>
-    <form class="form-horizontal" id="formlogin" method="post" role="form" action="/customer/user/login">
+    <form class="form-horizontal" id="formlogin" method="post" role="form" action="/user/user/login">
         <div class="login-box">
             <div class="login-title">商户登陆</div>
             <div class="login-name">
