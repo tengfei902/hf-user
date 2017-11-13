@@ -4,6 +4,12 @@
 
 <web-app>
   <display-name>hf-user</display-name>
+
+  <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>webapp.user</param-value>
+  </context-param>
+
   <servlet>
     <servlet-name>weaverServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
