@@ -25,11 +25,11 @@
                 <input type="hidden" name="pid" value=""/>
 
                 <div class="form-group">
-                    <label for="name" class="sr-only">用户名</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名" >
+                    <label for="loginId" class="sr-only">用户名</label>
+                    <input type="text" class="form-control" id="loginId" name="loginId" placeholder="请输入用户名" >
                 </div>
                 <div class="form-group">
-                    <label for="email" class="sr-only">登录密码</label>
+                    <label for="password" class="sr-only">登录密码</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="请输入登录密码" >
                     <div class="progress password-progress">
                         <div id="strengthBar" class="progress-bar" role="progressbar" style="width: 0;"></div>
@@ -40,13 +40,16 @@
                     <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="请再次输入登录密码" >
                 </div>
                 <div class="form-group">
-                    <label for="re-password" class="sr-only">请输入您的邀请码</label>
-                    <input type="text"  class="form-control" id="subUserId" name="subUserId" placeholder="请输入您的邀请码" >
-                </div>
-                <div class="form-group">
                     <div id="messages"></div>
                 </div>
-
+                <div class="form-group">
+                    <label for="email" class="sr-only">邮箱</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="请输入邮箱" >
+                </div>
+                <div class="form-group">
+                    <label for="tel" class="sr-only">手机号</label>
+                    <input type="text" class="form-control" id="tel" name="tel" placeholder="请输入手机号" >
+                </div>
                 <div class="form-group">
                     <p>已经有账号? <a href="/User_Login_index.html">点击登录</a></p>
                 </div>

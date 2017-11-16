@@ -39,8 +39,8 @@
                 <li class="navbar-nav-li"><a  class="active" href="/">首页</a></li>
                 <!-- <li class="navbar-nav-li"><a href="introduce.html">产品中心</a></li> -->
                 <!-- <li class="navbar-nav-li"><a href="#">帮助中心</a></li> -->
-                <li class="navbar-nav-li"><a href="web/demo/php/demo.rar">demo下载</a></li>
-                <li class="navbar-nav-li"><a href="/Ex_index.html">在线体验</a></li>
+                <%--<li class="navbar-nav-li"><a href="web/demo/php/demo.rar">demo下载</a></li>--%>
+                <%--<li class="navbar-nav-li"><a href="/Ex_index.html">在线体验</a></li>--%>
                 <li class="navbar-nav-li"><a href="/Agent_Login_index.html">代理登陆</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
