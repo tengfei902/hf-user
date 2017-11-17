@@ -24,7 +24,7 @@
         <div class="col-md-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>编辑个人资料</h5>
+                    <h5>编辑商户资料</h5>
                     <div class="ibox-content">
                         <p class="text-danger">谨慎修改用户信息，胡乱填写一律禁封账号处理</p>
                     </div>
@@ -34,16 +34,16 @@
                     <form class="layui-form" action="#springUrl('/user/edit_user_info')" autocomplete="off" id="profile" method="POST">
                         <input type="hidden" name="id" value="13">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">姓名：</label>
+                            <label class="layui-form-label">商户名：</label>
                             <div class="layui-input-block">
                                 <input type="text" id="name" name="name" lay-verify="title" autocomplete="off"
-                                       placeholder="姓名" class="layui-input" value=#if(${userInfo.name}) ${userInfo.name} #else "" #end />
+                                       placeholder="商户名" class="layui-input" value=#if(${userGroup.name}) ${userGroup.name} #else "" #end />
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">身份证号码：</label>
+                            <label class="layui-form-label">法人身份证：</label>
                             <div class="layui-input-block">
-                                <input type="text" id="idCard" name="idCard" lay-verify="identity" placeholder="身份证号码" autocomplete="off" class="layui-input" value= #if(${userInfo.idCard}) ${userInfo.idCard} #else "" #end >
+                                <input type="text" id="idCard" name="idCard" lay-verify="identity" placeholder="法人身份证" autocomplete="off" class="layui-input" value= #if(${userInfo.idCard}) ${userInfo.idCard} #else "" #end >
                             </div>
                         </div>
 

@@ -47,6 +47,8 @@
 		<constructor-arg>
 			<map>
 				<entry key="index" value-ref="userIndexDispatcher"/>
+				<entry key="user_group_profile" value-ref="groupIndexDispatcher"/>
+				<entry key="user_account_profile" value-ref="userProfileDispatcher"/>
 			</map>
 		</constructor-arg>
 	</bean>

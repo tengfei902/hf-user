@@ -125,9 +125,9 @@ public class UserController {
                             GROUP_ID, userInfo.getGroupId(),
                             USER_STATUS, userInfo.getStatus()));
 
-            modelAndView.setViewName("/common/user_group_profile");
+            modelAndView.setViewName("redirect:/common/user_group_profile");
         } catch (Exception e) {
-            modelAndView.setViewName("/common/index");
+            modelAndView.setViewName("redirect:/common/index");
         }
         return modelAndView;
     }

@@ -18,7 +18,7 @@ public class GroupIndexDispatcher implements Dispatcher {
     private DefaultClient client;
 
     @Override
-    public DispatchResult dispatch(HttpServletRequest request) {
+    public DispatchResult dispatch(HttpServletRequest request,String page) {
         HttpSession session = request.getSession();
         String groupId = session.getAttribute("groupId").toString();
         UserGroup userGroup = client.getUserGroupById(Long.parseLong(groupId));

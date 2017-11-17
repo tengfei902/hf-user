@@ -18,12 +18,13 @@ public class CommonApi {
     @RequestMapping(value="/{page}")
     public ModelAndView dispatch(HttpServletRequest request, @PathVariable("page")String page) {
         ModelAndView modelAndView = new ModelAndView();
-        request.setAttribute("page",page);
-        DispatchResult dispatchResult = dispatcherFactory.getDispatcher(request,page).dispatch(request);
+        DispatchResult dispatchResult = dispatcherFactory.getDispatcher(request,page).dispatch(request,page);
         modelAndView.setViewName(String.format("/%s",dispatchResult.getPage()));
 
         if(!org.apache.commons.collections.MapUtils.isEmpty(dispatchResult.getData())) {
-            modelAndView.addObject(dispatchResult.getData());
+            for(String key: dispatchResult.getData().keySet()) {
+                modelAndView.addObject(key,dispatchResult.getData().get(key));
+            }
         }
 
         return modelAndView;
