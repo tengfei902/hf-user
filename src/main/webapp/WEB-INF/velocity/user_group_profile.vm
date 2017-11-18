@@ -31,49 +31,49 @@
                 </div>
                 <div class="ibox-content">
                     <!--用户信息-->
-                    <form class="layui-form" action="#springUrl('/user/edit_user_info')" autocomplete="off" id="profile" method="POST">
+                    <form class="layui-form" action="#springUrl('/user/edit_group_info')" autocomplete="off" id="profile" method="POST">
                         <input type="hidden" name="id" value="13">
                         <div class="layui-form-item">
                             <label class="layui-form-label">商户名：</label>
                             <div class="layui-input-block">
                                 <input type="text" id="name" name="name" lay-verify="title" autocomplete="off"
-                                       placeholder="商户名" class="layui-input" value=#if(${userGroup.name}) ${userGroup.name} #else "" #end />
+                                       placeholder="商户名" class="layui-input" value=#if(${groupInfo.name}) ${groupInfo.name} #else "" #end />
                             </div>
                         </div>
                         <div class="layui-form-item">
+                            <label class="layui-form-label">法人：</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="username" name="username" lay-verify="username" placeholder="法人" autocomplete="off" class="layui-input" value= #if(${groupInfo.ownerName}) ${groupInfo.ownerName} #else "" #end >
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
                             <label class="layui-form-label">法人身份证：</label>
                             <div class="layui-input-block">
-                                <input type="text" id="idCard" name="idCard" lay-verify="identity" placeholder="法人身份证" autocomplete="off" class="layui-input" value= #if(${userInfo.idCard}) ${userInfo.idCard} #else "" #end >
+                                <input type="text" id="idCard" name="idCard" lay-verify="identity" placeholder="法人身份证" autocomplete="off" class="layui-input" value= #if(${groupInfo.idCard}) ${groupInfo.idCard} #else "" #end >
                             </div>
                         </div>
 
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label">手机：</label>
+                                <label class="layui-form-label">法人手机：</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" id="tel" name="tel" lay-verify="phone" autocomplete="off"
-                                           class="layui-input" value= #if(${userInfo.tel}) ${userInfo.tel} #else "" #end>
-                                </div>
-                            </div>
-                            <div class="layui-inline">
-                                <label class="layui-form-label">QQ：</label>
-                                <div class="layui-input-inline">
-                                    <input type="text" id="qq" name="qq" lay-verify="" autocomplete="off"
-                                           class="layui-input" value= #if(${userInfo.qq}) ${userInfo.qq} #else "" #end>
+                                    <input type="text" id="tel" name="tel" lay-verify="phone" autocomplete="off" placeholder="法人手机号"
+                                           class="layui-input" value= #if(${groupInfo.tel}) ${groupInfo.tel} #else "" #end>
                                 </div>
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">联系地址：</label>
+                            <label class="layui-form-label">公司地址：</label>
                             <div class="layui-input-block">
                                 <input type="text" id="address" name="address" lay-verify="title" autocomplete="off"
-                                       placeholder="联系地址" class="layui-input" value= #if(${userInfo.address}) ${userInfo.address} #else "" #end>
+                                       placeholder="公司地址" class="layui-input" value= #if(${groupInfo.address}) ${groupInfo.address} #else "" #end>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-input-block">
+                                <button onclick="window.history.back(-1)">上一步</button>
                                 <button class="layui-btn" lay-submit="" lay-filter="profile" type="submit">下一步</button>
-                                <button type="reset" class="reset-btn layui-btn layui-btn-primary">重置</button>
                             </div>
                         </div>
                         <input type="hidden" name="__hash__" value="b51c254fb856abf85f67a3ebaaeae11f_febd51c317b82e012155d1eabc0d7815" /></form>

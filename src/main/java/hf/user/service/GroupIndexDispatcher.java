@@ -24,7 +24,7 @@ public class GroupIndexDispatcher implements Dispatcher {
         UserGroup userGroup = client.getUserGroupById(Long.parseLong(groupId));
         DispatchResult dispatchResult = new DispatchResult();
         dispatchResult.setPage("user_group_profile");
-        dispatchResult.setData(MapUtils.beanToMap(userGroup));
+        dispatchResult.setData(MapUtils.buildMap("groupInfo",userGroup));
         return dispatchResult;
     }
 }

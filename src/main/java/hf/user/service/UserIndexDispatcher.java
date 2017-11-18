@@ -28,19 +28,20 @@ public class UserIndexDispatcher implements Dispatcher {
         UserInfo userInfo = hfClient.getUserInfoById(userId);
 
         DispatchResult result = new DispatchResult();
+        result.addObject("name",sessionInfo.get("name"));
 
         switch (UserStatus.parse(userInfo.getStatus())) {
             case NEW:
                 result.setPage("index_for_new_user");
-                result.setData(MapUtils.buildMap("userInfo",userInfo));
+                result.addObject("userInfo",userInfo);
                 break;
             case SUBMITED:
                 result.setPage("user_account_authorized");
-                result.setData(MapUtils.buildMap("userInfo",userInfo));
+                result.addObject("userInfo",userInfo);
                 break;
             case AVAILABLE:
                 result.setPage("index");
-                result.setData(MapUtils.buildMap("userInfo",userInfo));
+                result.addObject("userInfo",userInfo);
                 break;
             case CANCEL:
                 break;

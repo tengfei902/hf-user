@@ -4,8 +4,11 @@ import hf.base.biz.CacheService;
 import hf.base.client.DefaultClient;
 import hf.base.contants.Constants;
 import hf.base.enums.UserType;
+import hf.base.exceptions.BizFailException;
+import hf.base.model.UserGroup;
 import hf.base.model.UserInfo;
 import hf.base.utils.MapUtils;
+import hf.base.utils.ResponseResult;
 import hf.user.client.UserClient;
 import hf.user.model.RegisterRequest;
 import org.apache.commons.lang3.StringUtils;
@@ -13,10 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 import java.util.Objects;
 import static hf.base.contants.UserConstants.*;
 
@@ -129,6 +134,66 @@ public class UserController {
         } catch (Exception e) {
             modelAndView.setViewName("redirect:/common/index");
         }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/edit_group_info",method = RequestMethod.POST)
+    public ModelAndView editGroupInfo(HttpServletRequest request,HttpServletResponse response) {
+        String groupId = request.getSession().getAttribute(GROUP_ID).toString();
+        String name = request.getParameter(NAME);
+        String idCard = request.getParameter("idCard");
+        String tel = request.getParameter("tel");
+        String address = request.getParameter("address");
+        String ownerName = request.getParameter("username");
+        ResponseResult<UserGroup> res = userClient.editGroupInfo(MapUtils.buildMap("groupId",groupId,"name",name,"idCard",idCard,"tel",tel,"address",address,"ownerName",ownerName));
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        if(res.isSuccess()) {
+            modelAndView.setViewName("redirect:/common/user_account_bankcard");
+            return modelAndView;
+        } else {
+            modelAndView.setViewName("redirect:/common/user_group_profile");
+            return modelAndView;
+        }
+    }
+
+    @RequestMapping(value = "/save_bank_card",method = RequestMethod.POST)
+    public @ResponseBody Map<String,Object> saveBankCard(HttpServletRequest request, HttpServletResponse response) {
+        String groupId = request.getSession().getAttribute("groupId").toString();
+        String bank = request.getParameter("bank");
+        String bankNo = request.getParameter("bankNo");
+        String deposit = request.getParameter("deposit");
+        String owner = request.getParameter("owner");
+        String province = request.getParameter("province");
+        String city = request.getParameter("city");
+
+        ResponseResult<Boolean> responseResult = userClient.saveBankCard(
+                MapUtils.buildMap("groupId",groupId,
+                        "bank",bank,
+                        "bankNo",bankNo,
+                        "deposit",deposit,
+                        "owner",owner,
+                        "province",province,
+                        "city",city));
+
+        if(responseResult.isSuccess()) {
+            return MapUtils.buildMap("status",true);
+        }
+        return MapUtils.buildMap("status",false);
+    }
+
+    @RequestMapping(value = "/finish_user_info_complete",method = RequestMethod.GET)
+    public ModelAndView finishUserInfoComplete(HttpServletRequest request, HttpServletResponse response) {
+        String groupId = request.getSession().getAttribute("groupId").toString();
+        String userId = request.getSession().getAttribute("userId").toString();
+        ResponseResult<Boolean> responseResult = userClient.submitToAdmin(groupId,userId);
+        ModelAndView modelAndView = new ModelAndView();
+        if(responseResult.isSuccess()) {
+            modelAndView.setViewName("redirect:/common/user_account_authorized");
+            return modelAndView;
+        }
+        modelAndView.setViewName("redirect:/common/index");
         return modelAndView;
     }
 }

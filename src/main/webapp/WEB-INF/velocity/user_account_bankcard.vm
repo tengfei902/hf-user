@@ -43,10 +43,36 @@
                         </tr>
                         </thead>
                         <tbody>
+                        #foreach($card in $cards)
+                        <tr>
+                            <td>$card.id</td>
+                            <td>$card.bank</td>
+                            <td>$card.deposit</td>
+                            <td>$card.owner</td>
+                            <td>$card.bankNo</td>
+                            <td>$card.province</td>
+                            <td>$card.city</td>
+                            <td>
+                                <div class="layui-input-inline">
+                                <input type="checkbox" name="open" data-id="$card.id" #if($card.status == 10) checked #end data-name="中国工商银行" lay-skin="switch" lay-filter="switchTest" lay-text="是|否">
+                                </div>
+                            </td>
+                            <td>$card.remark</td>
+                        <td>
+                            <button class="layui-btn layui-btn-small"
+                                    onclick="bank_edit('编辑银行卡','/User_Account_addBankcard_id_47.html',600,400)"><i
+                                    class="layui-icon"></i></button>
+                            <button class="layui-btn layui-btn-small"
+                                    onclick="bank_del(this,'$card.id')"><i
+                                    class="layui-icon"></i></button>
+                        </td>
+                        </tr>
+                        #end
                         </tbody>
                     </table>
-                    <button class="layui-btn" onclick="bank_add('添加银行卡','/User_Account_addBankcard.html',600,400)">添加银行卡
-                    </button>
+                    <button class="layui-btn" onclick="bank_add('添加银行卡','#springUrl("/common/user_account_add_bankcard")',600,400)">添加银行卡</button>
+                    <button class="layui-btn" onclick="window.history.back(-1)">上一步</button>
+                    <button class="layui-btn" onclick="window.location.href='#springUrl("/user/finish_user_info_complete")'">完成</button>
                 </div>
             </div>
         </div>

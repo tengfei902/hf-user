@@ -49,6 +49,9 @@
 				<entry key="index" value-ref="userIndexDispatcher"/>
 				<entry key="user_group_profile" value-ref="groupIndexDispatcher"/>
 				<entry key="user_account_profile" value-ref="userProfileDispatcher"/>
+				<entry key="user_account_bankcard" value-ref="userBankCardDispatcher"/>
+				<entry key="user_account_add_bankcard" value-ref="userAddBankCardDispatcher"/>
+				<entry key="user_account_authorized" value-ref="authorizedDispatcher"/>
 			</map>
 		</constructor-arg>
 	</bean>
