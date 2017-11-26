@@ -41,7 +41,7 @@
                 <!-- <li class="navbar-nav-li"><a href="#">帮助中心</a></li> -->
                 <%--<li class="navbar-nav-li"><a href="web/demo/php/demo.rar">demo下载</a></li>--%>
                 <%--<li class="navbar-nav-li"><a href="/Ex_index.html">在线体验</a></li>--%>
-                <li class="navbar-nav-li"><a href="/Agent_Login_index.html">代理登陆</a></li>
+                <li class="navbar-nav-li"><a href="/agent">代理登陆</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-nav-li hidden-xs"><a href="#" class="tel">400-008-0059</a></li>

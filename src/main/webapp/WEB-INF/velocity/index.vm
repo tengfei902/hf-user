@@ -26,7 +26,7 @@
         </div>
         <div class="col-lg-4 col-md-7 col-sm-5 col-xs-8 head-right">
             <div class="loginout">
-                <a href="/User_Login_loginout.html">退出</a>
+                <a href="#springUrl('/user/logout')">退出</a>
             </div>
             <div class="dropdown profile-element hidden-xs">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -68,7 +68,6 @@
                     <ul class="nav nav-second-level">
                         <li><a href="#springUrl('/common/user_account_profile')" class="J_menuItem"><strong>基本信息</strong></a> </li>
                         <li><a href="#springUrl('/common/user_account_bankcard')" class="J_menuItem"><strong>银行卡管理</strong></a> </li>
-                        <li><a href="#springUrl('/common/user_account_authorized')" class="J_menuItem"><strong>认证信息</strong></a> </li>
                         <li><a href="#springUrl('/common/user_account_editPassword')" class="J_menuItem"><strong>登录密码</strong></a> </li>
                     </ul>
                 </li>

@@ -3,6 +3,7 @@ package hf.user.api;
 import hf.base.biz.CacheService;
 import hf.base.client.DefaultClient;
 import hf.base.contants.Constants;
+import hf.base.enums.GroupType;
 import hf.base.enums.UserType;
 import hf.base.exceptions.BizFailException;
 import hf.base.model.UserGroup;
@@ -86,13 +87,13 @@ public class UserController {
         RegisterRequest registerRequest = new RegisterRequest(loginId,password,email,tel,inviteCode);
         String result = client.register(MapUtils.beanToMap(registerRequest));
 
-        if(StringUtils.equals(result,"SUCCESS")) {
+        if(StringUtils.equals(result,"0000000")) {
             modelAndView.setViewName("redirect:/common/index");
             UserInfo userInfo = client.getUserInfo(loginId,password,Constants.GROUP_TYPE_CUSTOMER);
             doLogin(request,userInfo);
             return modelAndView;
         } else {
-            modelAndView.setViewName("redirect:/user/register.jsp");
+            modelAndView.setViewName("redirect:/register.jsp");
             return modelAndView;
         }
     }
@@ -145,7 +146,7 @@ public class UserController {
         String tel = request.getParameter("tel");
         String address = request.getParameter("address");
         String ownerName = request.getParameter("username");
-        ResponseResult<UserGroup> res = userClient.editGroupInfo(MapUtils.buildMap("groupId",groupId,"name",name,"idCard",idCard,"tel",tel,"address",address,"ownerName",ownerName));
+        ResponseResult<UserGroup> res = userClient.editGroupInfo(MapUtils.buildMap("groupId",groupId,"name",name,"idCard",idCard,"tel",tel,"address",address,"ownerName",ownerName,"type", GroupType.CUSTOMER.getValue()));
 
         ModelAndView modelAndView = new ModelAndView();
 
@@ -195,5 +196,16 @@ public class UserController {
         }
         modelAndView.setViewName("redirect:/common/index");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/edit_password",method = RequestMethod.POST)
+    public @ResponseBody Map<String,Object> editPassword(HttpServletRequest request) {
+        String userId = String.valueOf(request.getSession().getAttribute("userId"));
+        String ypassword = request.getParameter("ypassword");
+        String newpassword = request.getParameter("newpassword");
+        String newpasswordok = request.getParameter("newpasswordok");
+
+        boolean result = userClient.editPassword(userId,ypassword,newpassword,newpasswordok);
+        return MapUtils.buildMap("status",result);
     }
 }

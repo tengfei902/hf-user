@@ -51,11 +51,10 @@
                     <input type="text" class="form-control" id="tel" name="tel" placeholder="请输入手机号" >
                 </div>
                 <div class="form-group">
-                    <p>已经有账号? <a href="/User_Login_index.html">点击登录</a></p>
+                    <p>已经有账号? <a href="/user/login.jsp">点击登录</a></p>
                 </div>
                 <div class="form-group">
-
-                    <button type="submit" class="btn btn-primary">点击注 册</button>
+                    <button type="submit" class="btn btn-primary">点击注册</button>
                 </div>
                 <input type="hidden" name="__hash__" value="9174f744b99de00681f4bb29d4bbc9c8_1220a3d7b9e917dfa06a498549bcfd64" /></form>
             <!-- END Sign In Form -->
@@ -161,49 +160,6 @@
                     }
                 },
             }
-        }).on('success.form.bv', function(e) {
-            e.preventDefault();
-            var $form = $(e.target);
-            var bv = $form.data('bootstrapValidator');
-
-            $.post($form.attr('action'), $form.serialize(), function(res) {
-
-                alert(res);
-
-                if(res.errorno){
-                    layer.msg(res.msg ? res.msg : '注册失败,请重新提交，谢谢！', {
-                        time: 20000, //20s后自动关闭
-                        btn: ['知道了'],
-                        yes:function(){
-                            window.location.reload();
-                        }
-                    });
-                }else{
-                    var data = res.msg;
-                    layer.open({
-                        type: 1
-                        ,title: false
-                        ,closeBtn: false
-                        ,area: '300px;'
-                        ,shade: 0.8
-                        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-                        ,resize: false
-                        ,btn: ['立刻激活', '晚点再说']
-                        ,btnAlign: 'c'
-                        ,moveType: 1 //拖拽模式，0或者1
-                        ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' +
-                        '<h3>恭喜您，注册成功！</h3>' +
-                        '<p>请使用用户名： <strong>'+data.username+'</strong>登录系统并补充用户信息！</p>' +
-                        '<p>如果您忘记密码,请联系管理员重置!</p>' +
-                        '<p>管理员联系方式：<p><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin='+data.qq+'&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:'+data.qq+':51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></div>'
-                        ,success: function(layero){
-                            var btn = layero.find('.layui-layer-btn');
-                            btn.find('.layui-layer-btn0').attr({href: data.mail,target: '_blank'});
-                        }
-                    });
-                }
-
-            }, 'json');
         });
     });
 </script>
