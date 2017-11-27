@@ -52,6 +52,8 @@
 				<entry key="user_account_bankcard" value-ref="userBankCardDispatcher"/>
 				<entry key="user_account_add_bankcard" value-ref="userAddBankCardDispatcher"/>
 				<entry key="user_account_authorized" value-ref="authorizedDispatcher"/>
+				<entry key="user_account_change_record" value-ref="userAccountChangeRecordDispatcher"/>
+				<entry key="user_withdraw" value-ref="userWithDrawDispatcher"/>
 			</map>
 		</constructor-arg>
 	</bean>

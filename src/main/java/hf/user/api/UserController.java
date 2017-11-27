@@ -6,15 +6,16 @@ import hf.base.contants.Constants;
 import hf.base.enums.GroupType;
 import hf.base.enums.UserType;
 import hf.base.exceptions.BizFailException;
-import hf.base.model.UserGroup;
-import hf.base.model.UserInfo;
+import hf.base.model.*;
 import hf.base.utils.MapUtils;
+import hf.base.utils.Pagenation;
 import hf.base.utils.ResponseResult;
 import hf.user.client.UserClient;
 import hf.user.model.RegisterRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,8 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
 import static hf.base.contants.UserConstants.*;
 
 @Controller
@@ -208,4 +213,73 @@ public class UserController {
         boolean result = userClient.editPassword(userId,ypassword,newpassword,newpasswordok);
         return MapUtils.buildMap("status",result);
     }
+
+    @RequestMapping(value = "/getOprList",method = RequestMethod.POST ,produces = "application/json;charset=UTF-8")
+    public ModelAndView getOprList(HttpServletRequest request) {
+        Long groupId = Long.parseLong(request.getSession().getAttribute("groupId").toString());
+        AccountOprRequest accountOprRequest = new AccountOprRequest();
+        accountOprRequest.setPageSize(15);
+        accountOprRequest.setCurrentPage(1);
+        accountOprRequest.setGroupId(groupId);
+        if(StringUtils.isNotEmpty(request.getParameter("name"))) {
+            accountOprRequest.setName(request.getParameter("name"));
+        }
+        if(StringUtils.isNotEmpty(request.getParameter("outTradeNo"))) {
+            accountOprRequest.setOutTradeNo(request.getParameter("outTradeNo"));
+        }
+        if(StringUtils.isNotEmpty(request.getParameter("status"))) {
+            accountOprRequest.setStatus(Integer.parseInt(request.getParameter("status")));
+        }
+        if(StringUtils.isNotEmpty(request.getParameter("oprType"))) {
+            accountOprRequest.setOprType(Integer.parseInt(request.getParameter("oprType")));
+        }
+
+        Pagenation<AccountOprInfo> pagenation = client.getAccountOprLogList(accountOprRequest);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user_account_change_record");
+        modelAndView.addObject("pageInfo",pagenation);
+        modelAndView.addObject("requestInfo",accountOprRequest);
+
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value = "/withdraw_caculate",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody Map<String,Object> withDrawCaculate(HttpServletRequest request) {
+        BigDecimal settleAmount = new BigDecimal(request.getParameter("settleAmount"));
+        BigDecimal withDrawRate = client.getWithDrawRate();
+        BigDecimal fee = settleAmount.multiply(withDrawRate).divide(new BigDecimal("100"),2,BigDecimal.ROUND_HALF_UP);
+        BigDecimal amount = settleAmount.subtract(fee);
+
+        return MapUtils.buildMap("status",true,"brokerage",fee,"amount",amount);
+    }
+
+    @RequestMapping(value = "/submit_withdraw",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public @ResponseBody Map<String,Object> submitWithDraw(HttpServletRequest request) {
+        Long groupId = Long.parseLong(request.getSession().getAttribute("groupId").toString());
+        BigDecimal settleAmount = new BigDecimal(request.getParameter("settleAmount")).multiply(new BigDecimal("100"));
+        Long cardId = Long.parseLong(request.getParameter("cardId"));
+
+        List<UserBankCard> cardList = client.getUserBankCard(groupId);
+        List<Long> cardIds = cardList.parallelStream().map(UserBankCard::getId).collect(Collectors.toList());
+        if(!cardIds.contains(cardId)) {
+            return MapUtils.buildMap("status",false,"msg","结算卡错误");
+        }
+
+        Account account = client.getAccountByGroupId(groupId);
+        BigDecimal availableAmount = account.getAmount().subtract(account.getLockAmount());
+        if(availableAmount.compareTo(settleAmount)<0) {
+            return MapUtils.buildMap("status",false,"msg","最大结算结算金额:"+availableAmount.divide(new BigDecimal("100"),2,BigDecimal.ROUND_HALF_UP));
+        }
+
+        try {
+            Boolean result = client.newSettleRequest(groupId,cardId,settleAmount);
+            return MapUtils.buildMap("status",result);
+        } catch (BizFailException e) {
+            return MapUtils.buildMap("status",false,"msg",e.getMessage());
+        }
+    }
+
+
 }

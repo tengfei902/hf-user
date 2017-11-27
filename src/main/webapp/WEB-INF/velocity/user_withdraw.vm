@@ -28,22 +28,22 @@
                 </div>
                 <div class="ibox-content">
                     <blockquote class="layui-elem-quote">
-                        <span class="text-danger">可提现：0.01 元</span>
-                        <span style="margin:0 30px;" class="text-muted">冻结：0.07 元</span>
-                        <span class="text-danger">累计结算：1000 元</span>
-                        <span class="text-warning">结算：T+1</span>
+                        <span class="text-danger">可提现：${accountInfo.amount} 元</span>
+                        <span style="margin:0 30px;" class="text-muted">冻结：${accountInfo.lockAmount} 元</span>
+                        <span class="text-danger">累计结算：${accountInfo.paidAmount} 元</span>
+                        <span class="text-warning">手续费率: ${feeRate}%</span>
                     </blockquote>
 
                     <form class="layui-form" action="" autocomplete="off" id="calculate">
-                        <input type="hidden" name="userid" value="13">
+                        <input type="hidden" name="id" value="${accountInfo.id}">
                         <input type="hidden" name="balance" id="balance" value="0.01">
                         <input type="hidden" name="tktype" id="tktype" value="1">
                         <input type="hidden" name="feilv" id="feilv" value="1">
                         <div class="layui-form-item">
                             <label class="layui-form-label">提现金额：</label>
                             <div class="layui-input-block">
-                                <input type="number" name="u[money]" lay-verify="required" id="money" min="100" step="100"
-                                       autocomplete="off" onchange="calculate_rate(13)"
+                                <input type="number" name="settleAmount" lay-verify="required" id="settleAmount" min="100" step="100"
+                                       autocomplete="off" onchange="calculate_rate()"
                                        placeholder="0.00" class="layui-input" value=""
                                        onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
                                 <div class="layui-form-mid layui-word-aux">注：提现金额最小100元，含体现手续费,直接在金额中扣除.</div>
@@ -53,14 +53,14 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label">到账金额：</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="u[amount]" lay-verify="" id="amount" readonly autocomplete="off"
+                                    <input type="text" name="amount" lay-verify="" id="amount" readonly autocomplete="off"
                                            class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-inline">
                                 <label class="layui-form-label">手续费：</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="u[brokerage]" id="brokerage" lay-verify="" readonly autocomplete="off"
+                                    <input type="text" name="brokerage" id="brokerage" lay-verify="" readonly autocomplete="off"
                                            class="layui-input">
                                 </div>
                             </div>
@@ -68,8 +68,10 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">选择结算银行卡</label>
                             <div class="layui-input-block">
-                                <select name="u[bank]" lay-filter="">
-                                    <option value=""></option>
+                                <select name="cardId" lay-filter="">
+                                    #foreach($card in $cards)
+                                        <option value="${card.id}">${card.bank}-${card.bankNo}</option>
+                                    #end
                                 </select>
                             </div>
                         </div>
@@ -77,7 +79,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">支付密码：</label>
                             <div class="layui-input-inline">
-                                <input type="password" name="u[password]" lay-verify="pass" placeholder="请输入支付密码" autocomplete="off" class="layui-input">
+                                <input type="password" name="password" lay-verify="pass" placeholder="请输入支付密码" autocomplete="off" class="layui-input">
                             </div>
                         </div>
 
@@ -93,12 +95,12 @@
         </div>
     </div>
 </div>
-<script src="/Public/Front/js/jquery.min.js"></script>
-<script src="/Public/Front/js/bootstrap.min.js"></script>
-<script src="/Public/Front/js/plugins/peity/jquery.peity.min.js"></script>
-<script src="/Public/Front/js/content.js"></script>
-<script src="/Public/Front/js/plugins/layui/layui.js" charset="utf-8"></script>
-<script src="/Public/Front/js/x-layui.js" charset="utf-8"></script>
+<script src="#springUrl('/Public/Front/js/jquery.min.js')"></script>
+<script src="#springUrl('/Public/Front/js/bootstrap.min.js')"></script>
+<script src="#springUrl('/Public/Front/js/plugins/peity/jquery.peity.min.js')"></script>
+<script src="#springUrl('/Public/Front/js/content.js')"></script>
+<script src="#springUrl('/Public/Front/js/plugins/layui/layui.js')" charset="utf-8"></script>
+<script src="#springUrl('/Public/Front/js/x-layui.js')" charset="utf-8"></script>
 <script>
     layui.use(['form', 'layer','element'], function(){
         var layer = layui.layer //弹层
@@ -107,10 +109,10 @@
 
         //监听提交
         form.on('submit(save)', function(data){
-            $.ajax({
-                url:"/User_Withdrawal_saveClearing.html",
+            jQuery.ajax({
+                url:"#springUrl('/user/submit_withdraw')",
                 type:"post",
-                data:$('#calculate').serialize(),
+                data:jQuery('#calculate').serialize(),
                 success:function(res){
                     if(res.status){
                         layer.alert("申请成功", {icon: 6},function () {
@@ -132,19 +134,16 @@
     });
 
     /*手续费计算*/
-    function calculate_rate(userid){
-        var type = $('#tktype').val()
-                ,money = $('#money').val()
-                ,feilv = $('#feilv').val()
-                ,balance = $('#balance').val();
-        $.ajax({
-            url:"/User_Withdrawal_calculaterate.html",
+    function calculate_rate(){
+        var settleAmount = jQuery('#settleAmount').val();
+        jQuery.ajax({
+            url:"#springUrl('/user/withdraw_caculate')",
             type:'post',
-            data:'userid='+userid+'&money='+money+'&balance='+balance+"&tktype="+type+'&feilv='+feilv,
+            data:'settleAmount='+settleAmount,
             success:function(res){
                 if(res.status){
-                    $('#amount').val(res.data.amount);
-                    $('#brokerage').val(res.data.brokerage);
+                    jQuery('#amount').val(res.amount);
+                    jQuery('#brokerage').val(res.brokerage);
                 }else{
                     layer.alert(res.msg ? res.msg :"操作失败", {icon: 5},function () {
                         location.reload();

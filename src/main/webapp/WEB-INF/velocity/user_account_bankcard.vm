@@ -71,8 +71,10 @@
                         </tbody>
                     </table>
                     <button class="layui-btn" onclick="bank_add('添加银行卡','#springUrl("/common/user_account_add_bankcard")',600,400)">添加银行卡</button>
-                    <button class="layui-btn" onclick="window.history.back(-1)">上一步</button>
-                    <button class="layui-btn" onclick="window.location.href='#springUrl("/user/finish_user_info_complete")'">完成</button>
+                    #if(${groupInfo.status}!=10)
+                        <button class="layui-btn" onclick="window.history.back(-1)">上一步</button>
+                        <button class="layui-btn" onclick="window.location.href='#springUrl("/user/finish_user_info_complete")'">完成</button>
+                    #end
                 </div>
             </div>
         </div>

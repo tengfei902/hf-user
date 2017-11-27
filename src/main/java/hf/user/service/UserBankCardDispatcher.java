@@ -25,6 +25,8 @@ public class UserBankCardDispatcher implements Dispatcher {
         DispatchResult result = new DispatchResult();
         result.setPage(page);
         result.setData(MapUtils.buildMap("cards",list));
+        UserGroup userGroup = client.getUserGroupById(groupId);
+        result.addObject("groupInfo",userGroup);
         return result;
     }
 }
