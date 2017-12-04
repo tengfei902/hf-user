@@ -34,7 +34,7 @@
                 </div>
                 <!--条件查询-->
                 <div class="ibox-content">
-                    <form class="layui-form" action="" method="get" autocomplete="off" id="withdrawalform">
+                    <form class="layui-form" action="#springUrl('/user/getWithDrawList')" method="post" autocomplete="off" id="withdrawalform">
                         <input type="hidden" name="m" value="User">
                         <input type="hidden" name="c" value="Withdrawal">
                         <input type="hidden" name="a" value="index">
@@ -51,23 +51,12 @@
                             </div>
                             <div class="layui-inline">
                                 <div class="layui-input-inline">
-                                    <select name="tongdao">
-                                        <option value="">全部通道</option>
-                                        <option                                         value="WXJSAPI">微信公众号</option><option                                         value="DBANK">网银支付</option><option                                         value="wxcode">牛支付微信扫码</option><option                                         value="alipay">牛支付支付宝扫码</option><option                                         value="ICBC">工商银行</option><option                                         value="CMBCHINA">招商银行</option><option                                         value="ABC">农业银行</option><option                                         value="CCB">建设银行</option><option                                         value="BOCO">交通银行</option><option                                         value="CIB">兴业银行</option><option                                         value="CMBC">民生银行</option><option                                         value="CEB">光大银行</option><option                                         value="BOC">中国银行</option><option                                         value="ECITIC">中信银行</option><option                                         value="SDB">深圳发展银行</option><option                                         value="GDB">广发银行</option><option                                         value="SPDB">上海浦东发展银行</option><option                                         value="POST">中国邮政</option><option                                         value="PINGANBANK">平安银行</option><option                                         value="HXB">华夏银行</option><option                                         value="tenpay">QQ钱包</option>                                </select>
-                                </div>
-                                <div class="layui-input-inline">
                                     <select name="status">
                                         <option value="">全部状态</option>
-                                        <option value="0">未处理</option>
-                                        <option value="1">处理中</option>
-                                        <option value="2">已打款</option>
-                                    </select>
-                                </div>
-                                <div class="layui-input-inline">
-                                    <select name="T">
-                                        <option value="">全部类型</option>
-                                        <option  value="0">T + 0</option>
-                                        <option  value="1">T + 1</option>
+                                        <option value="0" #if(${requestInfo.status}==0) selected #end>未处理</option>
+                                        <option value="1" #if(${requestInfo.status}==1) selected #end>处理中</option>
+                                        <option value="10" #if(${requestInfo.status}==10) selected #end>已打款</option>
+                                        <option value="99" #if(${requestInfo.status}==99) selected #end>处理失败</option>
                                     </select>
                                 </div>
                             </div>
@@ -84,9 +73,8 @@
                     <table class="layui-table" lay-data="{width:'100%',id:'userData'}">
                         <thead>
                         <tr>
-                            <th lay-data="{field:'key'}"></th>
-                            <th lay-data="{field:'t', width:60}">类型</th>
-                            <th lay-data="{field:'userid', width:100,style:'color:#060;'}">商户编号</th>
+                            <th lay-data="{field:'key',width:100}"></th>
+                            <th lay-data="{field:'userid', width:120,style:'color:#060;'}">商户编号</th>
                             <th lay-data="{field:'tkmoney', width:110}">结算金额</th>
                             <th lay-data="{field:'sxfmoney', width:100,style:'color:#060;'}">手续费</th>
                             <th lay-data="{field:'money', width:110}">到账金额</th>
@@ -95,17 +83,57 @@
                             <th lay-data="{field:'banknumber', width:198}">银行卡号/开户名</th>
                             <th lay-data="{field:'sheng', width:100}">所属省</th>
                             <th lay-data="{field:'shi', width:120}">所属市</th>
-                            <th lay-data="{field:'payapiid', width:110}">通道</th>
                             <th lay-data="{field:'sqdatetime', width:170}">申请时间</th>
                             <th lay-data="{field:'cldatetime', width:170}">处理时间</th>
                             <th lay-data="{field:'status', width:100}">状态</th>
+                            <th lay-data="{field:'remark', width:100}">备注</th>
                         </tr>
                         </thead>
                         <tbody>
+                            #foreach($opr in ${pageInfo.data})
+                            <tr>
+                                <td>${opr.id}</td>
+                                <td>${opr.groupNo}</td>
+                                <td>${opr.settleAmount}</td>
+                                <td>${opr.fee}</td>
+                                <td>${opr.payAmount}</td>
+                                <td>${opr.withdrawBank.bank}</td>
+                                <td>${opr.withdrawBank.deposit}</td>
+                                <td>${opr.withdrawBank.bankNo}</td>
+                                <td>${opr.withdrawBank.province}</td>
+                                <td>${opr.withdrawBank.city}</td>
+                                <td>$!date.format('yyyy-MM-dd HH:mm:ss ',${opr.createTime})</td>
+                                #if(${opr.status}==0)
+                                    <td></td>
+                                #else
+                                    <td>$!date.format('yyyy-MM-dd HH:mm:ss ',${opr.updateTime})</td>
+                                #end
+                                <td>${opr.statusDesc}</td>
+                                <td>${opr.remark}</td>
+                            </tr>
+                            #end
                         </tbody>
                     </table>
-                    <!--交易列表-->
-                    <div class="pagex"> </div>
+                    <div class="pagex">
+                        <div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-0">
+                            #if(${pageInfo.showPage.showHead})
+                                <a class="num" href='#springUrl("/common/user_withdraw_record?currentPage=1")'>首页</a>
+                            #end
+                            #foreach($page in ${pageInfo.showPage.pages})
+                                #if($page.selected)
+                                    <span class="layui-laypage-curr current"><em class="layui-laypage-em"></em><em>$page.label</em></span>
+                                #else
+                                    <a class="num" href='#springUrl("/common/user_withdraw_record?currentPage=$page.pageIndex")'>$page.label</a>
+                                #end
+                            #end
+                            #if($pageInfo.hasNext)
+                                <a class="next layui-laypage-next" href='#springUrl("/common/user_withdraw_record?currentPage=${pageInfo.nextPage}")'>下一页</a>
+                            #end
+                            #if($pageInfo.showPage.showTail)
+                                <a class="next layui-laypage-next" href='#springUrl("/common/user_withdraw_record?currentPage=${pageInfo.tailPage.pageIndex}")'>${pageInfo.tailPage.label}</a>
+                            #end
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

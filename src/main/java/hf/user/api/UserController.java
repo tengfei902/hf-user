@@ -281,5 +281,28 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/getWithDrawList",method = RequestMethod.POST ,produces = "application/json;charset=UTF-8")
+    public ModelAndView getWithDrawList(HttpServletRequest request) {
+        String groupId = request.getSession().getAttribute("groupId").toString();
+        String status = request.getParameter("status");
+        Integer pageSize = 15;
+        Integer currentPage = 1;
+        WithDrawRequest withDrawRequest = new WithDrawRequest();
+        withDrawRequest.setPageSize(pageSize);
+        withDrawRequest.setCurrentPage(currentPage);
+        withDrawRequest.setGroupId(Long.parseLong(groupId));
+        if(StringUtils.isNotEmpty(status)) {
+            withDrawRequest.setStatus(Integer.parseInt(status));
+        }
+        if(StringUtils.isNotEmpty(request.getParameter("mchId"))) {
+            withDrawRequest.setMchId(request.getParameter("mchId"));
+        }
 
+        Pagenation<WithDrawInfo> pagenation = client.getWithDrawPage(withDrawRequest);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user_withdraw_record");
+        modelAndView.addObject("pageInfo",pagenation);
+        modelAndView.addObject("requestInfo",withDrawRequest);
+        return modelAndView;
+    }
 }

@@ -80,7 +80,6 @@
                     <ul class="nav nav-second-level">
                         <li><a href="#springUrl('/common/user_withdraw')" class="J_menuItem"><strong>申请结算</strong></a>     </li>
                         <li><a href="#springUrl('/common/user_withdraw_record')" class="J_menuItem"><strong>结算记录</strong></a>     </li>
-                        <li><a href="#springUrl('/common/user_withdraw_request')" class="J_menuItem"><strong>委托结算记录</strong></a>     </li>
                     </ul>
                 </li>
 

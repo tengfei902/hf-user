@@ -54,6 +54,7 @@
 				<entry key="user_account_authorized" value-ref="authorizedDispatcher"/>
 				<entry key="user_account_change_record" value-ref="userAccountChangeRecordDispatcher"/>
 				<entry key="user_withdraw" value-ref="userWithDrawDispatcher"/>
+				<entry key="user_withdraw_record" value-ref="userWithDrawRecordDispatcher"/>
 			</map>
 		</constructor-arg>
 	</bean>
