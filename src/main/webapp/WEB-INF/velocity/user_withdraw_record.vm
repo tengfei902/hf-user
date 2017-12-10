@@ -117,20 +117,20 @@
                     <div class="pagex">
                         <div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-0">
                             #if(${pageInfo.showPage.showHead})
-                                <a class="num" href='#springUrl("/common/user_withdraw_record?currentPage=1")'>首页</a>
+                                <a class="num" href='#springUrl("/common/user_withdraw_record?currentPage=1&status=#if($requestInfo.status)$requestInfo.status#end")'>首页</a>
                             #end
                             #foreach($page in ${pageInfo.showPage.pages})
                                 #if($page.selected)
                                     <span class="layui-laypage-curr current"><em class="layui-laypage-em"></em><em>$page.label</em></span>
                                 #else
-                                    <a class="num" href='#springUrl("/common/user_withdraw_record?currentPage=$page.pageIndex")'>$page.label</a>
+                                    <a class="num" href='#springUrl("/common/user_withdraw_record?currentPage=$page.pageIndex&status=#if(${requestInfo.status})${requestInfo.status}#end")'>$page.label</a>
                                 #end
                             #end
                             #if($pageInfo.hasNext)
-                                <a class="next layui-laypage-next" href='#springUrl("/common/user_withdraw_record?currentPage=${pageInfo.nextPage}")'>下一页</a>
+                                <a class="next layui-laypage-next" href='#springUrl("/common/user_withdraw_record?currentPage=${pageInfo.nextPage}&status=#if(${requestInfo.status})${requestInfo.status}#end")'>下一页</a>
                             #end
                             #if($pageInfo.showPage.showTail)
-                                <a class="next layui-laypage-next" href='#springUrl("/common/user_withdraw_record?currentPage=${pageInfo.tailPage.pageIndex}")'>${pageInfo.tailPage.label}</a>
+                                <a class="next layui-laypage-next" href='#springUrl("/common/user_withdraw_record?currentPage=${pageInfo.tailPage.pageIndex}&status=#if(${requestInfo.status})${requestInfo.status}#end")'>${pageInfo.tailPage.label}</a>
                             #end
                         </div>
                     </div>

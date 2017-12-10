@@ -28,6 +28,11 @@ public class UserWithDrawRecordDispatcher implements Dispatcher {
         withDrawRequest.setGroupId(groupId);
         withDrawRequest.setCurrentPage(currentPage);
         withDrawRequest.setPageSize(15);
+        String status = request.getParameter("status");
+        if(StringUtils.isNotEmpty(status)) {
+            withDrawRequest.setStatus(Integer.parseInt(status));
+        }
+
         Pagenation<WithDrawInfo> pagenation = client.getWithDrawPage(withDrawRequest);
 
         DispatchResult dispatchResult = new DispatchResult();

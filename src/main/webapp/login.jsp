@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="logo2.png" type="image/x-icon">
     <title>慧富宝[支付技术服务商]</title>
     <meta name="keywords" content="慧富宝,支付接口,移动支付,应用内支付,微信支付,银联接口,支付宝支付,接口,SP,短代,网银接口">
     <meta name="description" content="慧富宝支付接口服务平台，提供一站式的支付接口接入服务。让接入支付渠道变的无比简单">

@@ -55,6 +55,9 @@
 				<entry key="user_account_change_record" value-ref="userAccountChangeRecordDispatcher"/>
 				<entry key="user_withdraw" value-ref="userWithDrawDispatcher"/>
 				<entry key="user_withdraw_record" value-ref="userWithDrawRecordDispatcher"/>
+				<entry key="user_order_record" value-ref="userOrderRecordDispatcher"/>
+				<entry key="user_channel_index" value-ref="userChannelDispatcher"/>
+				<entry key="user_account_info" value-ref="userAccountInfoDispatcher"/>
 			</map>
 		</constructor-arg>
 	</bean>

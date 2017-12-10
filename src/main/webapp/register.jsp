@@ -14,6 +14,10 @@
     <meta name="__hash__" content="9174f744b99de00681f4bb29d4bbc9c8_1220a3d7b9e917dfa06a498549bcfd64" /></head>
 <body class="style-3">
 
+<%
+    String inviteCode = request.getParameter("i");
+%>
+
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-push-8">
@@ -22,7 +26,7 @@
             <form class="fh5co-form animate-box" data-animate-effect="fadeInRight" role="form" id="Formreg" method="post" action="user/register" autocomplete="off">
                 <h2>注册成为会员</h2>
 
-                <input type="hidden" name="pid" value=""/>
+                <input type="hidden" name="inviteCode" value="<%=inviteCode%>"/>
 
                 <div class="form-group">
                     <label for="loginId" class="sr-only">用户名</label>
