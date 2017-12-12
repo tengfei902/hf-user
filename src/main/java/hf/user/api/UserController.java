@@ -42,7 +42,7 @@ public class UserController {
     @Autowired
     private CacheService cacheService;
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ModelAndView login(HttpServletRequest request, String loginId, String password) {
         UserInfo userInfo = client.getUserInfo(loginId,password, Constants.GROUP_TYPE_CUSTOMER);
         ModelAndView modelAndView = new ModelAndView();
@@ -116,7 +116,7 @@ public class UserController {
         cacheService.login(userInfo.getId().toString(),request.getSession().getId());
     }
 
-    @RequestMapping(value = "/edit_user_info",method = RequestMethod.POST)
+    @RequestMapping(value = "/edit_user_info",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ModelAndView editUserInfo(HttpServletRequest request,HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView();
         Long userId = Long.parseLong(String.valueOf(request.getSession().getAttribute("userId")));
@@ -143,7 +143,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/edit_group_info",method = RequestMethod.POST)
+    @RequestMapping(value = "/edit_group_info",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ModelAndView editGroupInfo(HttpServletRequest request,HttpServletResponse response) {
         String groupId = request.getSession().getAttribute(GROUP_ID).toString();
         String name = request.getParameter(NAME);
@@ -164,7 +164,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/save_bank_card",method = RequestMethod.POST)
+    @RequestMapping(value = "/save_bank_card",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody Map<String,Object> saveBankCard(HttpServletRequest request, HttpServletResponse response) {
         String groupId = request.getSession().getAttribute("groupId").toString();
         String bank = request.getParameter("bank");
@@ -203,7 +203,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/edit_password",method = RequestMethod.POST)
+    @RequestMapping(value = "/edit_password",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public @ResponseBody Map<String,Object> editPassword(HttpServletRequest request) {
         String userId = String.valueOf(request.getSession().getAttribute("userId"));
         String ypassword = request.getParameter("ypassword");
