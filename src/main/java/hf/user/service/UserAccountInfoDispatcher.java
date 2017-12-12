@@ -26,7 +26,11 @@ public class UserAccountInfoDispatcher implements Dispatcher {
         dispatchResult.addObject("paidAmount",account.getPaidAmount().divide(new BigDecimal("100"),2,BigDecimal.ROUND_HALF_UP));
         dispatchResult.addObject("fee",account.getFee().divide(new BigDecimal("100"),2,BigDecimal.ROUND_HALF_UP));
         BigDecimal sumLockAmount = defaultClient.getSumLockAmount(groupId);
-        dispatchResult.addObject("logAmount",sumLockAmount.divide(new BigDecimal("100"),2,BigDecimal.ROUND_HALF_UP));
+        if(null== sumLockAmount) {
+            dispatchResult.addObject("logAmount",0);
+        } else {
+            dispatchResult.addObject("logAmount",sumLockAmount.divide(new BigDecimal("100"),2,BigDecimal.ROUND_HALF_UP));
+        }
         return dispatchResult;
     }
 }
