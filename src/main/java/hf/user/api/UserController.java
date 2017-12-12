@@ -67,7 +67,7 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @RequestMapping(value = "/register",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ModelAndView register(HttpServletRequest request) {
         String loginId = request.getParameter("loginId");
         String password = request.getParameter("password");
