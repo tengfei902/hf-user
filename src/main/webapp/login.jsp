@@ -62,8 +62,8 @@
 <section id="banner" style="overflow:hidden">
     <div class="container-fuild">
         <div class="bigimg">
-            <div class="banner1" ><img class="smallimg" data-src="/web/css/images/mbanner1.jpg" src=""/></div>
-            <div class="banner2"><img class="smallimg" data-src="/web/css/images/mbanner2.jpg" src=""/></div>
+            <div class="banner1" ><img class="smallimg" data-src="/web/css/images/banner1.jpg" src=""/></div>
+            <div class="banner2"><img class="smallimg" data-src="/web/css/images/banner2.jpg" src=""/></div>
         </div>
         <div class="banner-menu">
             <div class="banner-menu-li active"></div>
