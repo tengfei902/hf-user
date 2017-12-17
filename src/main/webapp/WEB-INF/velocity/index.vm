@@ -31,16 +31,12 @@
             <div class="dropdown profile-element hidden-xs">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 	    		<span class="clear">
-			        <span class="block m-t-xs">
-			            ${name}<br>
-			        </span>
-			        <span class="text-muted text-xs block">
-			            			                <span>认证用户</span>			            <b class="caret"></b>
-			        </span>
+			        <span class="block m-t-xs">${name}<br></span>
+			        <span class="text-muted text-xs block"><span>认证用户</span><b class="caret"></b></span>
 	    		</span>
                 </a>
                 <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                    <li><a class="J_menuItem" href="/User_Account_editPassword.html">修改密码</a> </li>
+                    <li><a class="J_menuItem" href="#springUrl('/common/user_account_editPassword')">修改密码</a></li>
                     <li class="divider"></li>
                     <li><a href="#springUrl('/user/logout')">安全退出</a> </li>
                 </ul>
