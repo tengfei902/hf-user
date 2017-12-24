@@ -30,6 +30,7 @@ public class UserChannelDispatcher implements Dispatcher {
         dispatchResult.addObject("queryUrl","http://huifufu.cn/hf-pay/queryOrder");
 
         UserGroup userGroup = client.getUserGroupById(groupId);
+        dispatchResult.addObject("groupNo",userGroup.getGroupNo());
         dispatchResult.addObject("callBackUrl",userGroup.getCallbackUrl());
         dispatchResult.addObject("cipherCode",userGroup.getCipherCode());
         return dispatchResult;

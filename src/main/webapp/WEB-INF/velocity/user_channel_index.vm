@@ -33,6 +33,7 @@
                         <p class="text-danger">统一收单接口：$payUrl</p>
                         <p class="text-danger">退款接口：$refundUrl</p>
                         <p class="text-danger">订单查询接口：$queryUrl</p>
+                        <p class="text-danger">商户编号：$groupNo</p>
                         <p class="text-danger">回调地址：$callBackUrl</p>
                         <p class="text-danger">密钥：$cipherCode</p>
                     </blockquote>
