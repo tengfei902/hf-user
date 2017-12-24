@@ -37,7 +37,7 @@
                             <label class="layui-form-label">商户名：</label>
                             <div class="layui-input-block">
                                 <input type="text" id="name" name="name" lay-verify="title" autocomplete="off"
-                                       placeholder="商户名" class="layui-input" value=#if(${groupInfo.name}) ${groupInfo.name} #else "" #end />
+                                       placeholder="商户名" class="layui-input" value=#if(${groupInfo.name}) ${groupInfo.name} #else "" #end>
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -68,6 +68,13 @@
                             <div class="layui-input-block">
                                 <input type="text" id="address" name="address" lay-verify="title" autocomplete="off"
                                        placeholder="公司地址" class="layui-input" value= #if(${groupInfo.address}) ${groupInfo.address} #else "" #end>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">回调地址：</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="callbackUrl" name="callbackUrl" autocomplete="off"
+                                       placeholder="回调地址" class="layui-input" value= #if(${groupInfo.callbackUrl}) ${groupInfo.callbackUrl} #else "" #end>
                             </div>
                         </div>
                         <div class="layui-form-item">

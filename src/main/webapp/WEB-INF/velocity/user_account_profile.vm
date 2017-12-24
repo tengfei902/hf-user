@@ -37,7 +37,7 @@
                             <label class="layui-form-label">姓名：</label>
                             <div class="layui-input-block">
                                 <input type="text" id="name" name="name" lay-verify="title" autocomplete="off"
-                                       placeholder="姓名" class="layui-input" value=#if(${userInfo.name}) ${userInfo.name} #else "" #end />
+                                       placeholder="姓名" class="layui-input" value=#if(${userInfo.name}) ${userInfo.name} #else "" #end>
                             </div>
                         </div>
                         <div class="layui-form-item">

@@ -151,7 +151,8 @@ public class UserController {
         String tel = request.getParameter("tel");
         String address = request.getParameter("address");
         String ownerName = request.getParameter("username");
-        ResponseResult<UserGroup> res = userClient.editGroupInfo(MapUtils.buildMap("groupId",groupId,"name",name,"idCard",idCard,"tel",tel,"address",address,"ownerName",ownerName,"type", GroupType.CUSTOMER.getValue()));
+        String callbackUrl = request.getParameter("callbackUrl");
+        ResponseResult<UserGroup> res = userClient.editGroupInfo(MapUtils.buildMap("groupId",groupId,"name",name,"idCard",idCard,"tel",tel,"address",address,"ownerName",ownerName,"type", GroupType.CUSTOMER.getValue(),"callbackUrl",callbackUrl));
 
         ModelAndView modelAndView = new ModelAndView();
 
