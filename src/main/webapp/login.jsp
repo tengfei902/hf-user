@@ -44,7 +44,7 @@
                 <li class="navbar-nav-li"><a href="/agent">代理登陆</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="navbar-nav-li hidden-xs"><a href="#" class="tel">400-008-0059</a></li>
+                <li class="navbar-nav-li hidden-xs"><a href="#" class="fa-qq">客服QQ : 253579401</a></li>
                 <li class="navbar-nav-li"><a class="login" href="javascript:;">登陆</a></li>
                 <li class="navbar-nav-li"><a href="register.jsp" class="register">注册</a></li>
             </ul>
