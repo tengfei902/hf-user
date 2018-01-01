@@ -4,7 +4,9 @@ import hf.base.client.DefaultClient;
 import hf.base.contants.Constants;
 import hf.base.dispatcher.DispatchResult;
 import hf.base.dispatcher.Dispatcher;
+import hf.base.enums.GroupStatus;
 import hf.base.enums.UserStatus;
+import hf.base.model.UserGroup;
 import hf.base.model.UserInfo;
 import hf.base.utils.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +29,13 @@ public class UserIndexDispatcher implements Dispatcher {
         Long userId = Long.parseLong(sessionInfo.get(ID).toString());
         UserInfo userInfo = hfClient.getUserInfoById(userId);
 
+        Long groupId = userInfo.getGroupId();
+        UserGroup userGroup = hfClient.getUserGroupById(groupId);
+
         DispatchResult result = new DispatchResult();
         result.addObject("name",sessionInfo.get("name"));
 
-        switch (UserStatus.parse(userInfo.getStatus())) {
+        switch (GroupStatus.parse(userGroup.getStatus())) {
             case NEW:
                 result.setPage("index_for_new_user");
                 result.addObject("userInfo",userInfo);
