@@ -90,6 +90,9 @@
                     <ul class="nav nav-second-level">
                         <li><a href="#springUrl('/common/user_channel_index')" class="J_menuItem"><strong>查看通道费率</strong></a>  </li>
                     </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#springUrl('/common/we_sm_pay')" class="J_menuItem"><strong>微信二维码</strong></a></li>
+                    </ul>
                 </li>
             </ul>
         </div>

@@ -58,6 +58,7 @@
 				<entry key="user_order_record" value-ref="userOrderRecordDispatcher"/>
 				<entry key="user_channel_index" value-ref="userChannelDispatcher"/>
 				<entry key="user_account_info" value-ref="userAccountInfoDispatcher"/>
+				<entry key="we_sm_pay" value-ref="weSmPayDispatcher"/>
 			</map>
 		</constructor-arg>
 	</bean>
@@ -67,6 +68,10 @@
 	</bean>
 
 	<bean class="hf.user.client.UserClient">
+		<constructor-arg value="${hf}"></constructor-arg>
+	</bean>
+
+	<bean class="hf.user.client.PayClient">
 		<constructor-arg value="${hf}"></constructor-arg>
 	</bean>
 
