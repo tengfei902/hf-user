@@ -317,4 +317,12 @@ public class UserController {
         ResponseResult<Boolean> responseResult = userClient.saveCipherCode(groupId,cipherCode);
         return MapUtils.buildMap("status",responseResult.getData(),"msg",responseResult.getMsg());
     }
+
+    @RequestMapping(value = "/save_callback_url",method = RequestMethod.POST ,produces = "application/json;charset=UTF-8")
+    public @ResponseBody Map<String,Object> saveCallBackUrl(HttpServletRequest request) {
+        String groupId = request.getSession().getAttribute("groupId").toString();
+        String callBackUrl = request.getParameter("callBackUrl");
+        ResponseResult<Boolean> responseResult = userClient.saveCallBackUrl(groupId,callBackUrl);
+        return MapUtils.buildMap("status",responseResult.getData(),"msg",responseResult.getMsg());
+    }
 }

@@ -73,4 +73,11 @@ public class UserClient extends BaseClient {
         String result = super.post(remoteParams);
         return new Gson().fromJson(result,new TypeToken<ResponseResult<Boolean>>(){}.getType());
     }
+
+    public ResponseResult<Boolean> saveCallBackUrl(String groupId,String callBackUrl) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath("/user/save_callback_url")
+                .withParam("groupId",groupId).withParam("callBackUrl",callBackUrl);
+        String result = super.post(remoteParams);
+        return new Gson().fromJson(result,new TypeToken<ResponseResult<Boolean>>(){}.getType());
+    }
 }

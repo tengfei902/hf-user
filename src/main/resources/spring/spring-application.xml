@@ -60,6 +60,8 @@
 				<entry key="user_account_info" value-ref="userAccountInfoDispatcher"/>
 				<entry key="we_sm_pay" value-ref="weSmPayDispatcher"/>
 				<entry key="user_cipher_code" value-ref="userCipherCodeDispatcher"/>
+				<entry key="user_callback_url" value-ref="userCallBackDispatcher"/>
+
 			</map>
 		</constructor-arg>
 	</bean>
