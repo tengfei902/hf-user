@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <button class="layui-btn" lay-submit="" lay-filter="add">提交修改</button>
+                            <button class="layui-btn" lay-submit="" lay-filter="add">提交订单</button>
                         </div>
                         <input type="hidden" name="__hash__" value="b51c254fb856abf85f67a3ebaaeae11f_febd51c317b82e012155d1eabc0d7815" /></form>
                     <!--用户信息-->
