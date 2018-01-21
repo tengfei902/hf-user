@@ -306,4 +306,15 @@ public class UserController {
         modelAndView.addObject("requestInfo",withDrawRequest);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/save_cipher_code",method = RequestMethod.POST ,produces = "application/json;charset=UTF-8")
+    public @ResponseBody Map<String,Object> saveCipherCode(HttpServletRequest request) {
+        String groupId = request.getSession().getAttribute("groupId").toString();
+        String cipherCode = request.getParameter("cipherCode");
+        if(cipherCode.length()>32) {
+            return MapUtils.buildMap("status",false,"msg","密钥不能超过32位");
+        }
+        ResponseResult<Boolean> responseResult = userClient.saveCipherCode(groupId,cipherCode);
+        return MapUtils.buildMap("status",responseResult.getData(),"msg",responseResult.getMsg());
+    }
 }

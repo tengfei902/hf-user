@@ -59,6 +59,7 @@
 				<entry key="user_channel_index" value-ref="userChannelDispatcher"/>
 				<entry key="user_account_info" value-ref="userAccountInfoDispatcher"/>
 				<entry key="we_sm_pay" value-ref="weSmPayDispatcher"/>
+				<entry key="user_cipher_code" value-ref="userCipherCodeDispatcher"/>
 			</map>
 		</constructor-arg>
 	</bean>

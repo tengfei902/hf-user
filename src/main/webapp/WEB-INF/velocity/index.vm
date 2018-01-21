@@ -65,6 +65,7 @@
                         <li><a href="#springUrl('/common/user_account_profile')" class="J_menuItem"><strong>基本信息</strong></a> </li>
                         <li><a href="#springUrl('/common/user_account_bankcard')" class="J_menuItem"><strong>银行卡管理</strong></a> </li>
                         <li><a href="#springUrl('/common/user_account_editPassword')" class="J_menuItem"><strong>登录密码</strong></a> </li>
+                        <li><a href="#springUrl('/common/user_cipher_code')" class="J_menuItem"><strong>密钥</strong></a> </li>
                     </ul>
                 </li>
                 <li><a href="#"> <i class="fa fa-money"></i> <span class="nav-label">财务管理</span> </a>

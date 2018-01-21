@@ -66,4 +66,11 @@ public class UserClient extends BaseClient {
         ResponseResult<Boolean> response = new Gson().fromJson(result,new TypeToken<ResponseResult<Boolean>>(){}.getType());
         return response.getData();
     }
+
+    public ResponseResult<Boolean> saveCipherCode(String groupId,String cipherCode) {
+        RemoteParams remoteParams = new RemoteParams(url).withPath("/user/save_cipher_code")
+                .withParam("groupId",groupId).withParam("cipherCode",cipherCode);
+        String result = super.post(remoteParams);
+        return new Gson().fromJson(result,new TypeToken<ResponseResult<Boolean>>(){}.getType());
+    }
 }
