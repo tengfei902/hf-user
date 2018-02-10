@@ -93,7 +93,6 @@
                 type:"POST",
                 data:jQuery('#profile').serialize(),
                 success:function(res){
-                    alert(res.errcode);
                     if(res.errcode == 0){
                         jQuery('#code').html(res.page_content);
                         jQuery('#form').submit();
