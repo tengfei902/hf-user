@@ -61,7 +61,7 @@
 				<entry key="we_sm_pay" value-ref="weSmPayDispatcher"/>
 				<entry key="user_cipher_code" value-ref="userCipherCodeDispatcher"/>
 				<entry key="user_callback_url" value-ref="userCallBackDispatcher"/>
-
+				<entry key="wy_pay" value-ref="wyPayDispatcher"/>
 			</map>
 		</constructor-arg>
 	</bean>

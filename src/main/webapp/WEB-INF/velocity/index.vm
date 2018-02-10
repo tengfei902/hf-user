@@ -95,6 +95,9 @@
                     <ul class="nav nav-second-level">
                         <li><a href="#springUrl('/common/we_sm_pay')" class="J_menuItem"><strong>微信二维码</strong></a></li>
                     </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#springUrl('/common/wy_pay')" class="J_menuItem"><strong>网银支付</strong></a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
