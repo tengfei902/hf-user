@@ -98,6 +98,9 @@
                     <ul class="nav nav-second-level">
                         <li><a href="#springUrl('/common/wy_pay')" class="J_menuItem"><strong>网银支付</strong></a></li>
                     </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#springUrl('/common/h5_pay')" class="J_menuItem"><strong>H5支付</strong></a></li>
+                    </ul>
                 </li>
             </ul>
         </div>

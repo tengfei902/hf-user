@@ -43,8 +43,6 @@
                             <th>编码</th>
                             <th>通道名称</th>
                             <th>通道费率</th>
-                            <th>密钥</th>
-                            <th>回调地址</th>
                             <th>通道状态</th>
 
                         </tr>
@@ -55,8 +53,6 @@
                                 <td>${channel.channelCode}</td>
                                 <td>${channel.channelName}</td>
                                 <td>${channel.feeRate}%</td>
-                                <td>${channel.cipherCode}</td>
-                                <td>${channel.callbackUrl}</td>
                                 <td>#if(${channel.status}==0)可用 #else 不可用#end</td>
                             </tr>
                         #end

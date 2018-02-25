@@ -62,6 +62,7 @@
 				<entry key="user_cipher_code" value-ref="userCipherCodeDispatcher"/>
 				<entry key="user_callback_url" value-ref="userCallBackDispatcher"/>
 				<entry key="wy_pay" value-ref="wyPayDispatcher"/>
+				<entry key="h5_pay" value-ref="h5PayDispatcher"/>
 			</map>
 		</constructor-arg>
 	</bean>
